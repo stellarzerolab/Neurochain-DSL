@@ -22,6 +22,9 @@ The `models/manifest.json` file contains the URL + SHA256 for the model pack.
 - Windows PowerShell:
   - `powershell -ExecutionPolicy Bypass -File scripts/fetch_models.ps1`
 
+Fastest option: download the model pack from the release page and extract the zip, then copy the `models/` folder into the repo root (same level as `Cargo.toml`), replacing the existing `models/` folder.
+Release: https://github.com/stellarzerolab/Neurochain-DSL/releases/tag/v0.1.0
+
 After downloading and extracting, you should have folders like:
 
 ```
