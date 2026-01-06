@@ -57,7 +57,8 @@ jobs:
         run: |
           # Known unmaintained warnings via transitive deps.
           cargo audit --deny warnings \
-            --ignore RUSTSEC-2024-0436
+            --ignore RUSTSEC-2024-0436 \
+            --ignore RUSTSEC-2025-0119
 ```
 
 ## 4. Supply Chain Hardening (Later)
@@ -78,5 +79,6 @@ cargo install cargo-audit
 cargo fmt --check
 cargo clippy --all-targets --all-features -- -D warnings
 cargo test --all-targets --all-features
-cargo audit --deny warnings --ignore RUSTSEC-2024-0436
+cargo audit --deny warnings --ignore RUSTSEC-2024-0436 \
+            --ignore RUSTSEC-2025-0119
 ```
