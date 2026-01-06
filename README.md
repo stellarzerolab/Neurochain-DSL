@@ -137,7 +137,7 @@ Note: the `models/` directory may contain third-party model files with their own
 
 ## Branding / trademarks
 
-The Apache-2.0 license does **not** grant any rights to use the NeuroChain or StellarZeroLabs names, logos, or branding to imply endorsement or official affiliation.
+The Apache-2.0 license does **not** grant any rights to use the NeuroChain or StellarZeroLab names, logos, or branding to imply endorsement or official affiliation.
 If you fork this project, please use your own name and branding for your fork/release.
 
-© 2026 StellarZeroLabs
+© 2026 StellarZeroLab

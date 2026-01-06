@@ -7,7 +7,7 @@ use neurochain::interpreter::Interpreter;
 
 const NEUROCHAIN_VERSION: &str = env!("CARGO_PKG_VERSION");
 const NEUROCHAIN_ABOUT: &str =
-    "NeuroChain CLI – built for AI, logic and elegance. StellarZeroLabs © 2026.";
+    "NeuroChain CLI – built for AI, logic and elegance. StellarZeroLab © 2026.";
 
 fn print_banner() {
     println!("\n🌐 Welcome to NeuroChain CLI – built for AI, logic and elegance\n");
@@ -126,7 +126,7 @@ Optional logging:
 NEUROCHAIN_OUTPUT_LOG=1       → write `neuro:` output to a file (logs/run_latest.log)
 NEUROCHAIN_RAW_LOG=1          → write intent/DSL debug to a file (logs/macro_raw_latest.log)
 
-Docs & examples: https://github.com/stellarzerolabs/neurochain
+Docs & examples: https://github.com/stellarzerolab/Neurochain-DSL
 "#
     );
 }
