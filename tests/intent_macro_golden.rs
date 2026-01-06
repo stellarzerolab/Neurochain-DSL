@@ -1,4 +1,5 @@
 use neurochain::ai::model::AIModel;
+use std::path::PathBuf;
 use std::time::{Duration, Instant};
 
 #[derive(Clone, Copy)]
@@ -8,9 +9,32 @@ struct Case {
     min_score: f32,
 }
 
+fn macro_model_path() -> PathBuf {
+    let base = std::env::var("NC_MODELS_DIR")
+        .map(PathBuf::from)
+        .unwrap_or_else(|_| {
+            let mut path = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
+            path.push("models");
+            path
+        });
+
+    base.join("intent_macro").join("model.onnx")
+}
+
+
 #[test]
 fn intent_macro_golden() {
-    let model = AIModel::new("models/intent_macro/model.onnx").expect("intent_macro loads");
+    let model_path = macro_model_path();
+    if !model_path.exists() {
+        eprintln!(
+            "intent_macro_golden skipped: model not found at {}",
+            model_path.display()
+        );
+        return;
+    }
+
+    let model = AIModel::new(model_path.to_string_lossy().as_ref())
+        .expect("intent_macro loads");
 
     // Golden regression cases:
     // - If training / ONNX export changes classification, this test catches it immediately.
