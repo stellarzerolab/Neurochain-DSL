@@ -1,8 +1,6 @@
 /target
 /logs
 /dist
-/docs/release.md
-/docs/ssh_aapanel.md
 macro_raw_latest.log
 macro_run_latest.log
 
