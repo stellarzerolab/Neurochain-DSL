@@ -21,7 +21,6 @@ fn macro_model_path() -> PathBuf {
     base.join("intent_macro").join("model.onnx")
 }
 
-
 #[test]
 fn intent_macro_golden() {
     let model_path = macro_model_path();
@@ -33,8 +32,7 @@ fn intent_macro_golden() {
         return;
     }
 
-    let model = AIModel::new(model_path.to_string_lossy().as_ref())
-        .expect("intent_macro loads");
+    let model = AIModel::new(model_path.to_string_lossy().as_ref()).expect("intent_macro loads");
 
     // Golden regression cases:
     // - If training / ONNX export changes classification, this test catches it immediately.
