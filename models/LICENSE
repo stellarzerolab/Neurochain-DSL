@@ -1,4 +1,4 @@
-First-party models (trained by StellarZeroLab for NeuroChain) are intended to be distributed under the Apache License, Version 2.0.
+First-party models (trained by StellarZeroLab for NeuroChain DSL) are intended to be distributed under the Apache License, Version 2.0.
 
 Third-party model files and/or training data can have their own licenses and attribution requirements; see `models/THIRD_PARTY_NOTICES.md`.
 
