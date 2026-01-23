@@ -127,9 +127,53 @@ Checklist:
 5) Compute SHA256 for the zip and update `models/manifest.json`:
    - `models_zip_url` (GitHub Release asset URL)
    - `models_zip_sha256`
-6) Smoke test:
+6) (Recommended) Publish `SHA256SUMS` for the release and sign it (Sigstore/cosign or GPG), so users can verify downloads independently of the release page text.
+7) Smoke test:
    - `bash scripts/fetch_models.sh` (Linux / macOS / WSL)
    - `powershell -ExecutionPolicy Bypass -File scripts/fetch_models.ps1` (Windows PowerShell)
+
+## Verify the download (recommended)
+
+The fetch scripts verify the downloaded zip’s SHA256 against `models/manifest.json` when `models_zip_sha256` is set.
+
+If you download the zip manually from GitHub Releases, compute SHA256 and compare it to:
+
+- the SHA256 shown on the GitHub Release page (copy icon), or
+- `models/manifest.json` (`models_zip_sha256`), or
+- a `SHA256SUMS` file published as a release asset (if available).
+
+Linux / WSL:
+
+```bash
+sha256sum neurochain-models-<version>.zip
+# If you downloaded SHA256SUMS too:
+sha256sum -c SHA256SUMS
+```
+
+macOS:
+
+```bash
+shasum -a 256 neurochain-models-<version>.zip
+```
+
+Windows PowerShell:
+
+```powershell
+(Get-FileHash -Algorithm SHA256 .\\neurochain-models-<version>.zip).Hash.ToLowerInvariant()
+```
+
+If the release also contains `SHA256SUMS.sig` + `SHA256SUMS.pem`, you can verify the signed checksums (Sigstore/cosign keyless):
+
+```bash
+cosign verify-blob \
+  --certificate SHA256SUMS.pem \
+  --signature SHA256SUMS.sig \
+  --certificate-oidc-issuer https://token.actions.githubusercontent.com \
+  --certificate-identity-regexp 'https://github.com/stellarzerolab/Neurochain-DSL/.github/workflows/release_sha256sums.yml@refs/tags/.*' \
+  SHA256SUMS
+```
+
+Maintainers: see `docs/release.md`.
 
 ## 7) See also
 
