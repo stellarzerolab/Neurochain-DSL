@@ -169,7 +169,7 @@ cosign verify-blob \
   --certificate SHA256SUMS.pem \
   --signature SHA256SUMS.sig \
   --certificate-oidc-issuer https://token.actions.githubusercontent.com \
-  --certificate-identity-regexp 'https://github.com/stellarzerolab/Neurochain-DSL/.github/workflows/release_sha256sums.yml@refs/tags/.*' \
+  --certificate-identity-regexp 'https://github.com/stellarzerolab/Neurochain-DSL/.github/workflows/release_sha256sums.yml@refs/(heads/main|tags/.*)' \
   SHA256SUMS
 ```
 

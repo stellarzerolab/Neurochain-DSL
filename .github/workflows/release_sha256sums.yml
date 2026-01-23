@@ -23,6 +23,7 @@ jobs:
 
       - name: Download release assets
         env:
+          GH_REPO: ${{ github.repository }}
           GH_TOKEN: ${{ github.token }}
           TAG: ${{ github.event.release.tag_name || github.event.inputs.tag }}
         run: |
@@ -59,6 +60,7 @@ jobs:
 
       - name: Upload SHA256SUMS + signature
         env:
+          GH_REPO: ${{ github.repository }}
           GH_TOKEN: ${{ github.token }}
           TAG: ${{ github.event.release.tag_name || github.event.inputs.tag }}
         run: |
