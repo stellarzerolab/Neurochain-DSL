@@ -142,27 +142,7 @@ If you download the zip manually from GitHub Releases, compute SHA256 and compar
 - `models/manifest.json` (`models_zip_sha256`), or
 - a `SHA256SUMS` file published as a release asset (if available).
 
-Linux / WSL:
-
-```bash
-sha256sum neurochain-models-<version>.zip
-# If you downloaded SHA256SUMS too:
-sha256sum -c SHA256SUMS
-```
-
-macOS:
-
-```bash
-shasum -a 256 neurochain-models-<version>.zip
-```
-
-Windows PowerShell:
-
-```powershell
-(Get-FileHash -Algorithm SHA256 .\\neurochain-models-<version>.zip).Hash.ToLowerInvariant()
-```
-
-If the release also contains `SHA256SUMS.sig` + `SHA256SUMS.pem`, you can verify the signed checksums (Sigstore/cosign keyless):
+If the release also contains `SHA256SUMS.sig` + `SHA256SUMS.pem`, verify the signed checksums first (Sigstore/cosign keyless):
 
 ```bash
 cosign verify-blob \
@@ -171,6 +151,28 @@ cosign verify-blob \
   --certificate-oidc-issuer https://token.actions.githubusercontent.com \
   --certificate-identity-regexp 'https://github.com/stellarzerolab/Neurochain-DSL/.github/workflows/release_sha256sums.yml@refs/(heads/main|tags/.*)' \
   SHA256SUMS
+```
+
+Linux / WSL:
+
+```bash
+sha256sum -c SHA256SUMS
+# Or compute directly and compare to the release page / manifest:
+sha256sum neurochain-models-<version>.zip
+```
+
+macOS:
+
+```bash
+shasum -a 256 -c SHA256SUMS
+# Or compute directly and compare to the release page / manifest:
+shasum -a 256 neurochain-models-<version>.zip
+```
+
+Windows PowerShell:
+
+```powershell
+(Get-FileHash -Algorithm SHA256 .\\neurochain-models-<version>.zip).Hash.ToLowerInvariant()
 ```
 
 Maintainers: see `docs/release.md`.
