@@ -124,7 +124,7 @@ fn normalize(s: &str) -> String {
 
 #[tokio::main]
 async fn main() {
-    banner::print_banner();
+    banner::print_server_banner();
     std::panic::set_hook(Box::new(|info| {
         eprintln!("PANIC: {info}");
         if std::env::var("RUST_BACKTRACE").as_deref() != Ok("0") {
