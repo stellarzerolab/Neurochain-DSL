@@ -93,8 +93,7 @@ If you expose `/api/analyze` publicly, set `NC_API_KEY` and require clients/prox
 cargo fmt --check
 cargo clippy --all-targets --all-features -- -D warnings
 cargo test --all-targets --all-features
-cargo audit --deny warnings --ignore RUSTSEC-2024-0436 \
-            --ignore RUSTSEC-2025-0119
+cargo audit --deny warnings --ignore RUSTSEC-2024-0436
 ```
 
 If disk usage grows due to many builds (debug/release, multiple binaries, tests), run:
